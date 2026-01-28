@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Flavors - Discover Authentic American Cuisine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E0E0E0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #D4AF37;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #D4AF37;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)),
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600') center/cover;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #9E9E9E;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            color: #121212;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .categories h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .categories p {
+            color: #9E9E9E;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .category-card {
+            background: linear-gradient(to bottom, #1E1E1E, #121212);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #D4AF37;
+        }
+
+        .category-count {
+            color: #9E9E9E;
+        }
+
+        /* Recipe Section */
+        .recipes-section {
+            padding: 5rem 2rem;
+            background: #0A0A0A;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .recipe-card {
+            background: linear-gradient(to bottom, #1E1E1E, #121212);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .recipe-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 1.5rem;
+        }
+
+        .recipe-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #E0E0E0;
+        }
+
+        .recipe-content p {
+            color: #9E9E9E;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #9E9E9E;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 5rem 2rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: linear-gradient(to bottom, #1E1E1E, #121212);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #E0E0E0;
+        }
+
+        .blog-content p {
+            color: #9E9E9E;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #D4AF37;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #FF4500;
+        }
+
+        /* Footer */
+        footer {
+            background: #0A0A0A;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section h4 {
+            color: #E0E0E0;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #9E9E9E;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #D4AF37;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            background: #2A2A2A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px 0 0 8px;
+            color: #E0E0E0;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            color: #121212;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #1E1E1E;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            position: relative;
+            height: 300px;
+        }
+
+        .modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            color: #E0E0E0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #D4AF37;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #D4AF37;
+        }
+
+        .modal-body h3 {
+            font-size: 1.5rem;
+            color: #D4AF37;
+            margin: 2rem 0 1rem;
+        }
+
+        .ingredients-list {
+            list-style: none;
+            padding: 1.5rem;
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .ingredients-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .ingredients-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #D4AF37;
+        }
+
+        .instructions-list {
+            list-style: none;
+        }
+
+        .instruction-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .instruction-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            color: #121212;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .categories h2,
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Global Flavors</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Discover Authentic American Cuisine</h1>
+            <p>From classic comfort food to modern twists, explore recipes that celebrate the bold flavors and diverse traditions of American cooking.</p>
+            <a href="#recipes" class="btn-primary">
+                Explore Recipes →
+            </a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2>Recipe Categories</h2>
+            <p>Explore our curated collection of American favorites</p>
+            
+            <div class="category-grid">
+                <div class="category-card" data-category="easy">
+                    <div class="category-icon">⚡</div>
+                    <h3>Easy to Make</h3>
+                    <p class="category-count">8 recipes</p>
+                </div>
+                <div class="category-card" data-category="breakfast">
+                    <div class="category-icon">🍳</div>
+                    <h3>Breakfast</h3>
+                    <p class="category-count">8 recipes</p>
+                </div>
+                <div class="category-card" data-category="dinner">
+                    <div class="category-icon">🍽️</div>
+                    <h3>Dinner</h3>
+                    <p class="category-count">8 recipes</p>
+                </div>
+                <div class="category-card" data-category="dessert">
+                    <div class="category-icon">🍰</div>
+                    <h3>Dessert</h3>
+                    <p class="category-count">8 recipes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section id="recipes" class="recipes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Recipes</h2>
+                <p>Handpicked classics from our culinary collection</p>
+            </div>
+            
+            <div class="recipe-grid" id="recipeGrid">
+                <!-- Recipes will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Culinary Stories</h2>
+                <p>Explore the history and culture behind American cuisine</p>
+            </div>
+            
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1758327125953-59490689355f?w=800" alt="The History of the Hamburger" class="blog-image">
+                    <div class="blog-content">
+                        <h3>The History of the Hamburger</h3>
+                        <p>From its humble origins to becoming an American icon...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1763747669306-229a06c35641?w=800" alt="5 Secret Spices for Perfect Turkey" class="blog-image">
+                    <div class="blog-content">
+                        <h3>5 Secret Spices for Perfect Turkey</h3>
+                        <p>Transform your Thanksgiving dinner with these secret seasonings...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1760822399066-029921fe429c?w=800" alt="Top 10 Food Festivals in the USA" class="blog-image">
+                    <div class="blog-content">
+                        <h3>Top 10 Food Festivals in the USA</h3>
+                        <p>Discover the best culinary celebrations across America...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Global Flavors</h3>
+                    <p>Discover the bold flavors and secret techniques behind the nation's favorite dishes.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>📞 +1-338-384-8923</p>
+                    <p>✉️ recipe@globalflavors.in</p>
+                    <p>📍 3411 Brentwood Drive<br>Dripping Springs, Texas</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="color: #9E9E9E; font-size: 0.9rem;">© 2026 Global Flavors. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Recipe Modal -->
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img id="modalImage" src="" alt="">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDescription"></p>
+                <div id="modalMeta" style="display: flex; gap: 2rem; margin: 1rem 0; color: #9E9E9E;"></div>
+                
+                <h3>Ingredients</h3>
+                <ul class="ingredients-list" id="modalIngredients"></ul>
+                
+                <h3>Step-by-Step Instructions</h3>
+                <div class="instructions-list" id="modalInstructions"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Recipe Data
+        const recipes = [
+            {
+                id: 1,
+                title: "Classic Cheeseburger",
+                category: "easy",
+                image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800",
+                description: "Juicy beef patty with melted cheese, fresh lettuce, tomatoes, and special sauce",
+                prepTime: "15 min",
+                cookTime: "10 min",
+                servings: 4,
+                ingredients: [
+                    "1 lb ground beef (80/20)",
+                    "4 burger buns",
+                    "4 slices cheddar cheese",
+                    "Lettuce leaves",
+                    "2 tomatoes, sliced",
+                    "1 onion, sliced",
+                    "Pickles",
+                    "Ketchup, mustard, mayo"
+                ],
+                instructions: [
+                    "Divide beef into 4 equal portions and shape into patties",
+                    "Season both sides with salt and pepper",
+                    "Heat grill or skillet to medium-high heat",
+                    "Cook patties for 4-5 minutes per side",
+                    "Add cheese in the last minute of cooking",
+                    "Toast buns lightly",
+                    "Assemble burger with desired toppings",
+                    "Serve immediately"
+                ]
+            },
+            {
+                id: 2,
+                title: "BBQ Pulled Pork",
+                category: "dinner",
+                image: "https://images.unsplash.com/photo-1558030006-450675393462?w=800",
+                description: "Slow-cooked pork shoulder with tangy BBQ sauce",
+                prepTime: "20 min",
+                cookTime: "8 hours",
+                servings: 8,
+                ingredients: [
+                    "4 lb pork shoulder",
+                    "2 tbsp brown sugar",
+                    "1 tbsp paprika",
+                    "2 tsp garlic powder",
+                    "1 tsp cayenne pepper",
+                    "1 cup BBQ sauce",
+                    "1/2 cup apple cider vinegar",
+                    "Burger buns for serving"
+                ],
+                instructions: [
+                    "Mix dry rub ingredients together",
+                    "Rub mixture all over pork shoulder",
+                    "Place in slow cooker",
+                    "Add vinegar and cook on low for 8 hours",
+                    "Shred meat with two forks",
+                    "Mix in BBQ sauce",
+                    "Serve on toasted buns",
+                    "Top with coleslaw if desired"
+                ]
+            },
+            {
+                id: 3,
+                title: "Buttermilk Pancakes",
+                category: "breakfast",
+                image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800",
+                description: "Fluffy, golden pancakes perfect for weekend breakfast",
+                prepTime: "10 min",
+                cookTime: "15 min",
+                servings: 4,
+                ingredients: [
+                    "2 cups all-purpose flour",
+                    "2 tbsp sugar",
+                    "2 tsp baking powder",
+                    "1 tsp baking soda",
+                    "1/2 tsp salt",
+                    "2 cups buttermilk",
+                    "2 eggs",
+                    "1/4 cup melted butter"
+                ],
+                instructions: [
+                    "Mix dry ingredients in a large bowl",
+                    "Whisk together wet ingredients separately",
+                    "Pour wet into dry ingredients",
+                    "Stir until just combined (lumps are okay)",
+                    "Heat griddle to medium heat",
+                    "Pour 1/4 cup batter for each pancake",
+                    "Flip when bubbles form on surface",
+                    "Serve with butter and maple syrup"
+                ]
+            },
+            {
+                id: 4,
+                title: "Apple Pie",
+                category: "dessert",
+                image: "https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=800",
+                description: "Classic American apple pie with flaky crust and cinnamon filling",
+                prepTime: "30 min",
+                cookTime: "45 min",
+                servings: 8,
+                ingredients: [
+                    "2 pie crusts",
+                    "6 cups sliced apples",
+                    "3/4 cup sugar",
+                    "2 tbsp flour",
+                    "1 tsp cinnamon",
+                    "1/4 tsp nutmeg",
+                    "2 tbsp butter",
+                    "1 egg for wash"
+                ],
+                instructions: [
+                    "Preheat oven to 375°F",
+                    "Mix apples with sugar, flour, and spices",
+                    "Line pie dish with bottom crust",
+                    "Fill with apple mixture",
+                    "Dot with butter",
+                    "Cover with top crust and seal edges",
+                    "Brush with egg wash and cut vents",
+                    "Bake for 45-50 minutes until golden"
+                ]
+            }
+        ];
+
+        // Load recipes into grid
+        function loadRecipes() {
+            const grid = document.getElementById('recipeGrid');
+            recipes.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = 'recipe-card';
+                card.onclick = () => openModal(recipe);
+                card.innerHTML = `
+                    <img src="${recipe.image}" alt="${recipe.title}" class="recipe-image">
+                    <div class="recipe-content">
+                        <h3>${recipe.title}</h3>
+                        <p>${recipe.description}</p>
+                        <div class="recipe-meta">
+                            <span>⏱️ ${recipe.prepTime} + ${recipe.cookTime}</span>
+                            <span>👥 ${recipe.servings} servings</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Open recipe modal
+        function openModal(recipe) {
+            const modal = document.getElementById('recipeModal');
+            document.getElementById('modalImage').src = recipe.image;
+            document.getElementById('modalTitle').textContent = recipe.title;
+            document.getElementById('modalDescription').textContent = recipe.description;
+            document.getElementById('modalMeta').innerHTML = `
+                <span>⏱️ Prep: ${recipe.prepTime}</span>
+                <span>👨‍🍳 Cook: ${recipe.cookTime}</span>
+                <span>👥 ${recipe.servings} servings</span>
+            `;
+            
+            const ingredientsList = document.getElementById('modalIngredients');
+            ingredientsList.innerHTML = '';
+            recipe.ingredients.forEach(ingredient => {
+                const li = document.createElement('li');
+                li.textContent = ingredient;
+                ingredientsList.appendChild(li);
+            });
+            
+            const instructionsList = document.getElementById('modalInstructions');
+            instructionsList.innerHTML = '';
+            recipe.instructions.forEach((instruction, index) => {
+                const div = document.createElement('div');
+                div.className = 'instruction-item';
+                div.innerHTML = `
+                    <div class="instruction-number">${index + 1}</div>
+                    <p>${instruction}</p>
+                `;
+                instructionsList.appendChild(div);
+            });
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('recipeModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('recipeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Load recipes on page load
+        window.addEventListener('load', loadRecipes);
+    </script>
+</body>
+</html>

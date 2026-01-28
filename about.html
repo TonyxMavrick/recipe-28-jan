@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Global Flavors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #E0E0E0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #D4AF37;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.95)),
+                        url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1600') center/cover;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #9E9E9E;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .content-card {
+            background: linear-gradient(to bottom, #1E1E1E, #121212);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-card h2 {
+            font-size: 2rem;
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            color: #FF4500;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-card p {
+            color: #E0E0E0;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .content-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-card ul li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #E0E0E0;
+        }
+
+        .content-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .team-card h4 {
+            color: #E0E0E0;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card .role {
+            color: #D4AF37;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            color: #9E9E9E;
+            font-size: 0.9rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #9E9E9E;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0A0A0A;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section h4 {
+            color: #E0E0E0;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #9E9E9E;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #D4AF37;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            background: #2A2A2A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px 0 0 8px;
+            color: #E0E0E0;
+        }
+
+        .newsletter-form button {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(to right, #D4AF37, #FF4500);
+            color: #121212;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Global Flavors</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>About Global Flavors</h1>
+            <p>Where Tradition Meets Innovation in American Cuisine</p>
+        </div>
+
+        <!-- Our Story -->
+        <section class="content-section">
+            <div class="content-card">
+                <h2>Our Story</h2>
+                <p>
+                    Welcome to Global Flavors, your premier destination for authentic American cuisine. Founded with a passion for celebrating the rich culinary heritage of the United States, we bring you recipes that have been passed down through generations, each telling a unique story of flavor, tradition, and innovation.
+                </p>
+                <p>
+                    From the bustling food trucks of New York City to the smoky BBQ pits of Texas, from the fresh seafood shacks of Maine to the farm-to-table movement in California, American cuisine is a beautiful tapestry woven from countless cultural influences. At Global Flavors, we honor this diversity by curating recipes that represent the very best of what American cooking has to offer.
+                </p>
+                <p>
+                    Our journey began in a small kitchen in Dripping Springs, Texas, where our founders experimented with family recipes and discovered the joy of sharing great food with others. Today, we've grown into a community of food lovers, home cooks, and culinary enthusiasts who believe that good food brings people together.
+                </p>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="content-section">
+            <div class="content-card">
+                <h2>Our Mission & Vision</h2>
+                
+                <h3>Mission</h3>
+                <p>
+                    To inspire home cooks of all skill levels to explore, create, and share delicious American recipes while preserving culinary traditions and fostering innovation in the kitchen.
+                </p>
+
+                <h3>Vision</h3>
+                <p>
+                    To become the most trusted and beloved resource for American cuisine, creating a global community where food lovers can discover authentic recipes, learn cooking techniques, and celebrate the joy of home cooking.
+                </p>
+
+                <h3>Our Values</h3>
+                <ul>
+                    <li>Authenticity: We stay true to traditional recipes while embracing modern innovations</li>
+                    <li>Quality: Every recipe is tested and perfected before sharing</li>
+                    <li>Community: We believe in the power of food to bring people together</li>
+                    <li>Education: We teach cooking techniques and share culinary knowledge</li>
+                    <li>Sustainability: We promote responsible cooking and ingredient sourcing</li>
+                    <li>Inclusivity: We celebrate the diverse cultures that shape American cuisine</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="content-section">
+            <div class="content-card">
+                <h2>Our Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Tested Recipes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Community Members</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Five-Star Reviews</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Video Tutorials</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="content-section">
+            <div class="content-card">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">👨‍🍳</div>
+                        <h4>James Anderson</h4>
+                        <div class="role">Founder & Head Chef</div>
+                        <p>20+ years of culinary experience specializing in American regional cuisine</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">👩‍🍳</div>
+                        <h4>Sarah Mitchell</h4>
+                        <div class="role">Recipe Developer</div>
+                        <p>Passionate about modernizing classic recipes with a healthy twist</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">📸</div>
+                        <h4>Michael Chen</h4>
+                        <div class="role">Food Photographer</div>
+                        <p>Creating stunning visuals that bring recipes to life</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">✍️</div>
+                        <h4>Emily Rodriguez</h4>
+                        <div class="role">Content Director</div>
+                        <p>Crafting compelling stories about food, culture, and tradition</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What Sets Us Apart -->
+        <section class="content-section">
+            <div class="content-card">
+                <h2>What Sets Us Apart</h2>
+                <ul>
+                    <li><strong>Tested & Perfected:</strong> Every recipe undergoes rigorous testing in our test kitchen</li>
+                    <li><strong>Detailed Instructions:</strong> Step-by-step guidance with helpful tips and tricks</li>
+                    <li><strong>Video Tutorials:</strong> Visual learners can follow along with our cooking videos</li>
+                    <li><strong>Ingredient Flexibility:</strong> Substitution suggestions for dietary needs and preferences</li>
+                    <li><strong>Community Reviews:</strong> Real feedback from real home cooks</li>
+                    <li><strong>Cultural Context:</strong> Learn the history and story behind each dish</li>
+                    <li><strong>Seasonal Menus:</strong> Recipes that celebrate fresh, seasonal ingredients</li>
+                    <li><strong>Expert Support:</strong> Our team is here to answer your cooking questions</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Join Us -->
+        <section class="content-section">
+            <div class="content-card" style="text-align: center;">
+                <h2>Join Our Culinary Community</h2>
+                <p style="max-width: 600px; margin: 0 auto 2rem;">
+                    Whether you're a beginner cook or a seasoned chef, there's a place for you at Global Flavors. Subscribe to our newsletter, follow us on social media, and become part of a community that celebrates the joy of cooking and sharing great food.
+                </p>
+                <div class="newsletter-form" style="max-width: 500px; margin: 0 auto;">
+                    <input type="email" placeholder="Enter your email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Global Flavors</h3>
+                    <p>Discover the bold flavors and secret techniques behind the nation's favorite dishes.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>📞 +1-338-384-8923</p>
+                    <p>✉️ recipe@globalflavors.in</p>
+                    <p>📍 3411 Brentwood Drive<br>Dripping Springs, Texas</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="color: #9E9E9E; font-size: 0.9rem;">© 2026 Global Flavors. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
